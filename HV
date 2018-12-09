@@ -1,0 +1,7 @@
+//@version=3
+study(title="Historical Volatility", shorttitle="HV")
+length = input(10, minval=1)
+annual = 365
+per = isintraday or isdaily and interval == 1 ? 1 : 7
+hv = 100 * stdev(log(close / close[1]), length) * sqrt(annual / per)
+plot(hv, color=blue) 
